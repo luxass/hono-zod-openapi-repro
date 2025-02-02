@@ -1,37 +1,42 @@
-import { OpenAPIHono, createRoute } from '@hono/zod-openapi'
-import { showRoutes } from 'hono/dev'
+import { OpenAPIHono, createRoute } from "@hono/zod-openapi";
+import { showRoutes } from "hono/dev";
 
-const app = new OpenAPIHono()
-const v1 = new OpenAPIHono().basePath('/api/v1')
+const app = new OpenAPIHono();
+const v1 = new OpenAPIHono().basePath("/api/v1");
 
-v1.openapi(createRoute({
-  method: 'get',
-  path: "/message2",
-  responses: {
-    200: {
-      description: 'Get message',
+v1.openapi(
+  createRoute({
+    method: "get",
+    path: "/message2",
+    responses: {
+      200: {
+        description: "Get message",
+      },
     },
-  },
-}), (c) => c.json({ message: 'Hello' }))
+  }),
+  (c) => c.json({ message: "Hello" }),
+);
 
-
-app.openapi(createRoute({
-  method: 'get',
-  path: "/message",
-  responses: {
-    200: {
-      description: 'Get message',
+app.openapi(
+  createRoute({
+    method: "get",
+    path: "/message",
+    responses: {
+      200: {
+        description: "Get message",
+      },
     },
-  },
-}), (c) => c.json({ message: 'Hello' }))
+  }),
+  (c) => c.json({ message: "Hello" }),
+);
 
-app.route('/', v1)
+app.route("/", v1);
 
-app.doc('/doc', {
-  openapi: '3.0.0',
+app.doc("/doc", {
+  openapi: "3.0.0",
   info: {
-    version: '1.0.0',
-    title: 'My API',
+    version: "1.0.0",
+    title: "My API",
   },
 });
 
@@ -39,6 +44,6 @@ app.doc('/doc', {
 // GET  /message
 // GET  /api/v1/message2
 // GET  /doc
-showRoutes(app)
+showRoutes(app);
 
 export default app;
