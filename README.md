@@ -1,5 +1,7 @@
 # hono-zod-openapi-repro
 
+Nested Apps with Base Path doesn't include the base path in the OpenAPI document.
+
 To install dependencies:
 
 ```bash
